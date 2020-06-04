@@ -1,0 +1,44 @@
+{% extends 'buyerside.html' %}
+
+{% block buyerpro %}
+
+<!-- uaddid = models.ForeignKey(UserProfile,on_delete=models.CASCADE)
+houseno = models.CharField(max_length=20)
+    street = models.CharField(max_length = 100)
+    ward = models.CharField(max_length=100)
+    city = models.CharField(max_length=50)
+    district = models.CharField(max_length=50)
+    pin = models.CharField(max_length=6)
+    state = models.CharField(max_length=50) -->
+
+
+<style>
+  #id_houseno{
+    color: red;
+    width: 100px;
+    border-radius: 5px;
+    border: 1px solid orange;
+  }
+</style>
+
+<div class="w3-container w3-padding">
+    <form action="/buyer/addressform/"  method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ afrom.as_p }} 
+      <input type="hidden" name='red' value="{{red}}">
+    <input type="submit" name="submit" value="Submit" style="width:196px;" class="w3-red"> 
+  </form>
+</div>
+<br>
+{% endblock %}
+
+
+<!--
+  <input type="text" name="hno" value="" placeholder="House no." required>
+  <input type="text" name="street" value="" placeholder="Street" required>
+  <input type="text" name="ward" value="" placeholder="Ward"  required>
+  <input type="text" name="city" value="" placeholder="City" required>
+  <input type="text" name="dist" value="" placeholder="District" required>
+  <input type="text" name="pin" value="" placeholder="Pin" required>
+  <input type="text" name="state" value="" placeholder="State"  required>
+-->

@@ -1,0 +1,27 @@
+{% extends 'buyerside.html' %}
+
+{% block buyerprofile %}
+<div class="w3-container">
+<h1>User Profile</h1>
+<div class="w3-container">
+<h3>Name : {{ request.user.username }}</h3>
+<h3>Mobile : {{ mobile }}</h3>
+<h3>Email : {{ request.user.email }}</h3>
+</div>
+<div class="w3-container">
+  <h3>Addresses :</h3>
+  
+  {% for i in obj %}
+  <div class="w3-conatiner" style="background-color:black;color:#CAFAFE;border:1px solid white;padding:5px;">
+    <p>{{ i.houseno }} , {{ i.street }} , {{ i.ward }} , {{ i.city }} , {{ i.district }} , {{ i.pin }} , {{ i.state }}</p>
+  </div>
+  <br>
+{% endfor %}
+
+</div>
+<div class="w3-container">
+  <a href="/buyer/addressform/"> <input type="submit" name="" value="Add more addresses" class="w3-red"></a>
+</div>
+<br>
+</div>
+{% endblock %}

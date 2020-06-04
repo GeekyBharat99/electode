@@ -1,0 +1,62 @@
+{% extends 'history.html' %}
+
+{% block order %}
+<div class="w3-container">
+<h3>Order history</h3>
+{% for i in obj %}
+  {{ i.tim }}
+  <div class="w3-container w3-padding w3-border">
+    <div class="w3-left">
+      <p><b>{{ i.productname }}</b></p>
+      <img src="{{ i.productimage.url }}" alt="img" height="100" width="100">
+    </div>
+    <div class="w3-right">
+      <table class="w3-table">
+        <tr>
+          <td>Price</td>
+          <td>{{ i.productprice }}</td>
+        </tr>
+        <tr>
+          <td>Quantity</td>
+          <td>{{ i.productqty }}</td>
+        </tr>
+        <tr>
+          <td>Mobile</td>
+          <td>{{ i.buyermobile }}</td>
+        </tr>
+        <tr>
+          <td>Address</td>
+          <td>{{ i.buyeraddress }}</td>
+        </tr>
+        <tr>
+          <td>Seller</td>
+          <td>{{ i.userid }}</td>
+        </tr>
+        <tr>
+          <td>Status</td>
+          {% if i.status == "ordered" %}
+            <td style="color:blue">{{ i.status }}</td>
+          {% endif %}
+          {% if "shipped" in i.status %}
+            <td style="color:orange">{{ i.status }}</td>
+          {% endif %}
+          {% if "delivered" in i.status %}
+            <td style="color:green">{{ i.status }}</td>
+          {% endif %}
+          {% if i.status == "out of stock" %}
+            <td style="color:red">{{ i.status }}</td>
+          {% endif %}
+        </tr>
+      </table>
+    </div>
+    <div class="w3-container">
+      <a href="#"><button type="button" name="button" class="w3-black">Remove order</button></a>
+      {% if i.status != "delivered" %}
+      <a href="#"><button type="button" name="button" class="w3-black">Cancel order</button></a>
+      {% endif %}
+    </div>
+  </div>
+  <br>
+{% endfor %}
+</div>
+{% endblock %}

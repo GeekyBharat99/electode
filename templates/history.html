@@ -1,0 +1,33 @@
+{% extends 'buyerside.html' %}
+
+
+{% block history %}
+<br>
+<div class="w3-container">
+  <div class="w3-container">
+    <div class="w3-left">
+      <form action="/buyer/order/" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="submit" name="order" value="Order History" class="w3-red" style="border:1px solid #CAFAFE;">
+      </form>
+    </div>
+    <div class="w3-right">
+      <form action="/buyer/notification/" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="submit" name="notify" value="Notifications" class="w3-red" style="border:1px solid #CAFAFE;">
+      </form>
+    </div>
+  </div>
+  <div class="w3-container">
+
+
+    {% block order %}
+    {% endblock %}
+
+    {% block notification %}
+    {% endblock %}
+  </div>
+
+</div>
+<br>
+{% endblock %}

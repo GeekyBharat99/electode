@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+
+{% block navigation %}
+
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Ecommerce App</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/seller/sellerapp/">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">My Account</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/seller/addproduct/">Add Product</a>
+          </li>
+         <li class="nav-item">
+            <a class="nav-link" href="/seller/addcategory/">Add Category</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/seller/addedproduct/">Added Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/seller/sellernotifications/">Notifications</a>
+          </li>
+          <li>
+            <a class="nav-link" href="/seller/sellerorders/">Orders</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout_call/">Logout</a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+{% endblock %}
+
+
+{% block sellerorders %}
+<div class="container">
+  <br>
+  <h4>Manage Orders</h4>
+
+  <div class="container">
+    {% for i in obj %}
+				{{i.tim}}
+      <div class="container" style="padding:10px;border:0.5px solid #ccc">
+        <h5>{{ i.productname }}</h5>
+        <div>
+          <img src="{{ i.productimage.url }}" alt="img" height="100" width="100">
+        </div>
+        <br>
+        <div>
+          <table>
+            <tr>
+              <td>Price</td>
+              <td>- {{ i.productprice }}</td>
+            </tr>
+            <tr>
+              <td>Quantity</td>
+              <td>- {{ i.productqty }}</td>
+            </tr>
+            <tr>
+              <td>Buyer Mobile</td>
+              <td>- {{ i.buyermobile }}</td>
+            </tr>
+            <tr>
+              <td>Buyer Address</td>
+              <td>- {{ i.buyeraddress }}</td>
+            </tr>
+            <tr>
+              <td>Order Status</td>
+              {% if i.status == "ordered" %}
+                <td style="color:blue">- {{ i.status }}</td>
+              {% endif %}
+              {% if "shipped" in i.status %}
+                <td style="color:orange">- {{ i.status }}</td>
+              {% endif %}
+              {% if "delivered" in i.status %}
+                <td style="color:green">- {{ i.status }}</td>
+              {% endif %}
+              {% if i.status == "out of stock" %}
+                <td style="color:red">- {{ i.status }}</td>
+              {% endif %}
+            </tr>
+          </table>
+        </div>
+          {% if i.status == 'ordered' %}
+            <a href="{% url 'seller:sellershippcall' id=i.id %}"><button type="button" name="button"  style="width:100px;background-color:black;color:#CAFAFE;margin-right:10px;">Shipp</button></a>
+            <a href="#"><button type="button" name="button"  style="width:100px;background-color:black;color:#CAFAFE;">Cancel</button></a>
+          {% endif %}
+      </div>
+			<br>
+    {% endfor %}
+  </div>
+
+</div>
+{% endblock %}

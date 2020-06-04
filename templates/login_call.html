@@ -1,0 +1,48 @@
+{% extends 'basemain.html' %}
+{% block logcdn %}
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <h3 class="text-center">Log In</h3>
+    <form method="post" class="form-group" enctype="multipart/form-data">
+      {% csrf_token %}
+      <label for="">Username</label>
+      <br>
+      <input type="text" name="usernm" value="" class="form-control">
+      <br>
+      <label for="">Password</label>
+      <br>
+      <input type="password" name="passwd" value="" class="form-control">
+      <br>
+      <input type="submit" name="" value="Log In" class="form-control">
+    </form>
+  </div>
+  <div class="col-md-4"></div>
+</div>
+{% endblock %}
+
+<!--
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <input type="text" name="usernm" placeholder="Username" class="form-control">
+  </div>
+  <div class="col-md-4"></div>
+</div>
+<br>
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <input type="text" name="passwd" placeholder="********" class="form-control">
+  </div>
+  <div class="col-md-4"></div>
+</div>
+<br>
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <input type="submit" value="Log In" class="form-control" style="background-color:green;color:white;">
+  </div>
+  <div class="col-md-4"></div>
+</div>
+-->

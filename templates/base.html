@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Ecommerce App</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/heroic-features.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  {% block navigation %}
+
+  {% endblock %}
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <!-- Jumbotron Header -->
+    {% block mainblock %}
+    {% endblock %}
+
+    {% block sellernotifications %}
+    {% endblock %}
+
+    {% block createnotifications %}
+    {% endblock %}
+
+    {% block sellerorders %}
+    {% endblock %}
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+</html>

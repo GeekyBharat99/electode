@@ -1,0 +1,50 @@
+{% extends 'buyerside.html' %}
+{% load staticfiles %}
+
+
+{% block buyall %}
+<div class="w3-container w3-padding">
+  <h3>Review</h3>
+  <div class="w3-container">
+    <form action="/buyer/buyallproduct/" method="post">
+      {% csrf_token %}
+      <label for="selone">Address</label><br>
+      <select  name="address" style="width:80%;border:2px solid orange;height:35px;" id="selone" required>
+        {% for i in address %}
+        <option value="{{ i.houseno }} , {{ i.street }} , {{ i.ward }} , {{ i.city }} , {{ i.district }} , {{ i.pin }} , {{ i.state }}">{{ i.houseno }} , {{ i.street }} , {{ i.ward }} , {{ i.city }} , {{ i.district }} , {{ i.pin }} , {{ i.state }}</option>
+        {% endfor %}
+      </select>
+      <br><br>
+      {% for i in obj %}
+        <div class="w3-container w3-padding w3-border">
+          <p><b>{{ i.prodcartid.product_name }}</b></p>
+          <img src="{{ i.prodcartid.product_img.url }}" alt="img" height="150" width="150">
+          <br>
+          <p>Description : {{ i.prodcartid.product_desc }}</p>
+          <p>Stock : {{ i.prodcartid.product_avail }} items</p>
+          <p>Retailer : {{ i.prodcartid.added_by_seller }}</p>
+          <p>Select Quantity</p>
+          <select  name="selc" style="width:80%;border:2px solid orange;height:35px;" id="selone" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+        <input style="display:none;" type="number" name="ide" value="{{ i.id }}">
+        <hr>
+      {% endfor %}
+      <p>Payment mode</p>
+      <select  name="pay" style="width:80%;border:2px solid orange;height:35px;" id="selone" required>
+        <option value="Online Wallet">Online Wallet</option>
+        <option value="Cash on delivery">Cash on delivery</option>
+      </select>
+      <br>
+      <br>
+      <input type="submit" name="sub" value="Reviewed" class="w3-red w3-padding">
+      <br><br>
+    </form>
+  </div>
+</div>
+{% endblock %}

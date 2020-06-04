@@ -1,0 +1,51 @@
+{% extends 'buyerside.html' %}
+{% load staticfiles %}
+{% block  showproduct %}
+<!-- <div  class="w3-container w3-xlarge">
+  <p class="w3-left" style="color: black">Jeans</p>
+  <p class="w3-right"></p>
+</div> -->
+<!-- Image header -->
+<!-- <div class="w3-display-container w3-container text-center">
+  <img src="{% static "denim.jpg" %}" alt="Jeans" style="width:%5;height: 5%;">
+  <div class="w3-display-topleft w3-text-white" style="padding:24px 48px">
+    <h1 class="w3-jumbo w3-hide-small" style="color: #CAFAFE;"><b><span style="color: black;">N</span>ew arrival</b></h1>
+    <p><a href="#jeans" class="w3-button w3-black w3-padding-large w3-large">SHOP NOW</a></p>
+  </div>
+</div>
+<div  class="w3-container w3-xlarge" id="mainco">
+  <p class="w3-left" style="color: black">{{ req }}</p>
+  <p class="w3-right"></p>
+</div> -->
+
+<!-- <div class="w3-container w3-text-grey" id="jeans">
+  <p>{{ count }} items23</p>
+</div> -->
+
+<!-- Product grid -->
+<div class="w3-container">
+  {% for i in pro %}
+    <div class="w3-col l3 s6">
+      <div class="w3-container">
+        <div class="w3-display-container">
+          <img src="{{ i.product_img.url }}" style="width:150px;height:150px" alt="img">
+          <!--<span class="w3-tag w3-display-topleft">Sale</span>-->
+          <div class="w3-display-middle w3-display-hover">
+            <a href="{% url 'buyer:proddetails' id=i.id %}"><button class="w3-button w3-black">View Product<i class="fa fa-shopping-cart"></i></button></a>
+          </div>
+        </div>
+        <p>{{ i.product_name }}<br><b class="w3-text">Rs {{ i.product_price }}</b></p>
+        <!--<p>Vintage Skinny Jeans<br><b class="w3-text-red">$14.99</b></p>-->
+      </div>
+    </div>
+  {% endfor %}
+  <!-- <div class="w3-col l3 s6">
+    <div class="w3-container">
+      <div class="w3-display-container">
+        <a href="#"><img src="{% static 'searchmore.png' %}" style="width:150px;height:120px" alt="Img"></a>
+        <span class="w3-tag w3-display-topleft">Sale</span>
+      </div>
+    </div>
+  </div> -->
+</div>
+{% endblock %}

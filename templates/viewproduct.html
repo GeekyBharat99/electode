@@ -1,0 +1,32 @@
+{% extends 'buyerside.html' %}
+{% load staticfiles %}
+
+{% block viewproduct %}
+<div class="w3-container">
+  <a href="/buyer/buyerapp/"><button type="button" name="button" style="color:white;background-color:black;">Go back</button></a>
+</div>
+<br><br>
+<div class="w3-display-container w3-container text-center">
+  <img src="{{ pro.product_img.url }}" alt="Jeans" style="height: 5%;width:30%;">
+  <div class="w3-display-topleft w3-text-white" style="padding:24px 48px">
+  </div>
+</div>
+<div  class="w3-container w3-xlarge">
+  <p style="background-color:black;color:#CAFAFE;" class="w3-left">Price : Rs {{ pro.product_price }} /- </p>
+  <p style="background-color:black;color:#CAFAFE;margin-left:1%;" class="w3-left"> Offer : 50% Off</p>
+</div>
+<div class="w3-container w3-xlarge">
+  {{ pro.product_name }}
+  <p>Description : {{ pro.product_desc }}</p>
+  <p>Items in stock : {{ pro.product_avail }} items</p>
+  <p>Retailer : {{ pro.added_by_seller }}</p>
+  <p>Payment Options : --------</p>
+  <p>Delevery options : ---------</p>
+  <br><br>
+  <form method="post">
+    {% csrf_token %}
+    <a href="#"><input type="submit" name="" value="Add to maccart" style="color:#CAFAFE;background-color:black;border:2px solid #CAFAFE;"></a>
+  </form>  
+</div>
+<br><br>
+{% endblock %}

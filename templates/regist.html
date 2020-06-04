@@ -1,0 +1,68 @@
+{% extends 'basemain.html' %}
+
+{% block contextdelevery %}
+<h3 class="text-center">Sign Up</h3>
+<form method="post" class="form-group" enctype="multipart/form-data">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+
+    
+
+      {% csrf_token %}
+      <!-- {{ form1.as_p }} -->
+
+
+
+
+      {% for field in form1 %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        {% if field.help_text %}
+          <small style="color: grey">{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+    {% endfor %}
+
+
+
+      {% csrf_token %}
+      
+
+
+      {% for field in form2 %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        {% if field.help_text %}
+          <small style="color: grey">{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+    {% endfor %}
+
+
+
+
+
+
+
+
+
+
+      <input type="submit" name="" value="Sign Up">
+      <br>
+      <br>
+      <br>
+      <h5>If already registered try <a href="/login_call">Login</a> </h5>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</form>
+{% endblock %}

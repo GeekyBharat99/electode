@@ -1,0 +1,48 @@
+{% extends 'buyerside.html' %}
+{% load staticfiles %}
+
+{% block cartitems %}
+<br>
+<div class="w3-container">
+  <h3 align="center">Cart details</h3>
+  <br><br>
+  <h5 class="w3-margin-left">Items in cart : {{count}}</h5>
+  <br>
+  {% for i in cart %}
+  <div class="w3-col">
+    <div class="w3-container">
+      <div class="w3-display-container">
+        <img src="{{ i.prodcartid.product_img.url }}" style="width:20%;height:20%">
+      </div>
+      <p>{{ i.prodcartid.product_name }}<br><b class="w3-text">Rs {{ i.prodcartid.product_price }}</b></p>
+      <!--<p>Vintage Skinny Jeans<br><b class="w3-text-red">$14.99</b></p>-->
+    </div>
+    <div class="class="w3-container w3-xlarge">
+
+      <form method="post" enctype="multipart/form-data" action="{% url 'buyer:removecart' id=i.id %}">
+        {% csrf_token %}
+        <input type="submit" name="Remove" value="Remove" class="w3-button w3-red w3-margin-left w3-left" style="width:180px;">
+      </form>
+
+      <form  method="post"  enctype="multipart/form-data" action="{% url 'buyer:addDeliveryDetails' id=i.id %}">
+        {% csrf_token %}
+        <input type="submit" name="Buy" value="Buy" class="w3-button w3-cyan w3-margin-left w3-left" style="width:180px;">
+      </form>
+    </div>
+    <br><br>
+    <br><br>
+    <hr style="border:0.5px solid grey;">
+  </div>
+  {% endfor %}
+  <br><br>
+</div>
+<div class="w3-container w3-xlarge">
+    <a href="{% url 'buyer:buyallproduct' %}"><input type="submit" value="Buy all" name="All" class="w3-button w3-black w3-margin-left" class="w3-left" style="padding:3px;width:180px;"></a>
+    <h3 class="w3-right">Total : Rs {{ total }}</h3>
+</div>
+<br>
+<div class="w3-container w3-xlarge">
+  <a href="/buyer/buyerapp/"><button type="button" name="button" class="w3-button w3-red w3-margin-left" style="padding:10px;width:180px;">Go Home</button></a>
+</div>
+<br>
+{% endblock %}

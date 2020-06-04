@@ -1,0 +1,62 @@
+{% extends 'buyerside.html' %}
+
+{% block prodDeliveryDetail %}
+
+<div class="jumbotron">
+  
+<h2><a href="{% url 'buyer:addAddress' %}?next={{request.path}}">Add Address</a>
+</h2>
+</div>
+
+
+<div class="w3-container">
+  <h3>Review</h3>
+  <div class="w3-container">
+    {{ product.product_name }}
+    <br>
+    <img src="{{ product.product_img.url }}" alt="img" height="130" width="150">
+    <p>Description : {{ product.product_desc }}</p>
+    <p>Items in stock : {{ product.product_avail }} items</p>
+    <p>Retailer : {{ product.added_by_seller }}</p>
+    <br>
+  </div>
+
+  
+  <form  action="{% url 'buyer:addDeliveryDetails' id=idy %}" method="post">
+    
+    {% csrf_token %}
+    <label for="selone">Address</label><br>
+    {% if have_add %}
+      <select  name="address" style="width:80%;border:2px solid orange;height:35px;" id="selone" required>
+        {% for i in address %}
+        <option value="{{ i.houseno }} , {{ i.street }} , {{ i.ward }} , {{ i.city }} , {{ i.district }} , {{ i.pin }} , {{ i.state }}">{{ i.houseno }} , {{ i.street }} , {{ i.ward }} , {{ i.city }} , {{ i.district }} , {{ i.pin }} , {{ i.state }}</option>
+        {% endfor %}
+      </select>
+
+    
+    {% endif %}
+   
+   
+
+    <br><br>
+    <label for="seltwo">Quantaty</label><br>
+    <select  name="sel" style="width:80%;border:2px solid orange;height:35px;" id="seltwo" required>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+    <br><br>
+    <label for="selthree">Payment Option</label><br>
+    <select  name="pay" style="width:80%;border:2px solid orange;height:35px;" id="selthree" required>
+      <option value="Online Wallet">Online Wallet</option>
+      <option value="Cash on delivery">Cash on delivery</option>
+    </select>
+    <br>
+    <br>
+    <input type="submit" name="" value="Reviewed" class="w3-red w3-padding">
+  </form>
+</div>
+<br>
+{% endblock %}

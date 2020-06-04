@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+
+{% block navigation %}
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Ecommerce App</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/seller/sellerapp/">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">My Account</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/seller/addproduct/">Add Product</a>
+          </li>
+					<li class="nav-item">
+            <a class="nav-link" href="/seller/addcategory/">Add Category</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/seller/addedproduct/">Added Products</a>
+          </li>
+					<li class="nav-item">
+						<a class="nav-link" href="/seller/sellernotifications/">Notifications</a>
+					</li>
+					<li>
+            <a class="nav-link" href="/seller/sellerorders/">Orders</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout_call/">Logout</a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+{% endblock %}
+
+{% block mainblock %}
+
+	<br><br>
+	<h1>Add Category</h1>
+	<form method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+    <br>
+		<label for="">Currently Available Categories:</label><br>
+		<select name="catid" class="form-control">
+		{% for i in lis %}
+			<option value="{{i.cat}}">{{i.cat}}</option>
+		{% endfor %}
+		</select><br>
+    <label>New Category Name : </label><input type="text" name="ncat" class="form-control"><br>
+		<input type="submit" value="Add Category" class="btn-primary"><br>
+	</form>
+	<br><br>
+{% endblock %}

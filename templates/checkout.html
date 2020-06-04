@@ -1,0 +1,31 @@
+{% extends 'buyerside.html' %}
+
+
+{% block checkout %}
+<div class="w3-container w3-padding">
+  <div class="w3-container w3-padding">
+    <b>{{ product.product_name }}</b>
+    <br>
+    <img src="{{ product.product_img.url }}" alt="img" height="130" width="150">
+    <br>
+    <br><br>
+    <b class="w3-red w3-padding">Price: Rs {{ product.product_price }} /-</b>
+    <br><br>
+    <br>
+    <b>Description : {{ product.product_desc }}</b>
+    <br>
+    <b>Shipping address : {{ address }}</b><br>
+    <b>Shipping quantity : {{ quantaty }}</b><br>
+    <b>Payment mode : {{ payment}}</b><br>
+    <b>Delivery : 2 - 3 days</b>
+    <br>
+    <br>
+    <b>Total Cost : Rs {{ total }} /-</b>
+    <br>
+    <form action="{% url 'buyer:checkout' id=ide %}" method="post">
+      {% csrf_token %}
+      <input type="submit" name="sub" value="Checkout" class="w3-red" style="width:150px;height:36px">
+    </form>
+  </div>
+</div>
+{% endblock %}

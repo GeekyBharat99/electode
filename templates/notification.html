@@ -1,0 +1,14 @@
+{% extends 'history.html' %}
+
+{% block notification %}
+<div class="w3-container">
+<h3>Notifications</h3>
+{% for i in notification %}
+  {{ i.tim }}
+  <div class="w3-container w3-padding w3-border">
+    <p>{{ i.message }}</p>
+  </div>
+  <br>
+{% endfor %}
+</div>
+{% endblock %}

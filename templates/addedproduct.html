@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block navigation %}
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Ecommerce App</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/seller/sellerapp/">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">My Account</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/seller/addproduct/">Add Product</a>
+          </li>
+					<li class="nav-item">
+            <a class="nav-link" href="/seller/addcategory/">Add Category</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/seller/addedproduct/">Added Products</a>
+          </li>
+					<li class="nav-item">
+						<a class="nav-link" href="/seller/sellernotifications/">Notifications</a>
+					</li>
+					<li>
+            <a class="nav-link" href="/seller/sellerorders/">Orders</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout_call/">Logout</a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+{% endblock %}
+
+{% block mainblock %}
+<br>
+<div class="row">
+	{% for i in prod %}
+	<br>
+	<div class="col-md-4 card" style="width: 18rem;">
+	  <img class="card-img-top" src="{{ i.product_img.url }}" alt="product img!">
+	  <div class="card-body">
+	    <h5 class="card-title">{{ i.product_name }}</h5>
+	    <p class="card-text">Rs {{ i.product_price }}/-</p>
+	    <a href="{% url 'seller:modifyproduct' id=i.id %}" class="btn btn-primary">Modify</a>
+	  </div>
+	</div>
+	<br>
+	{% endfor %}
+</div>
+<br>
+{% endblock %}
